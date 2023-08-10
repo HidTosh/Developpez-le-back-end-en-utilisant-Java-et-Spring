@@ -36,9 +36,9 @@ export class FormComponent implements OnInit {
       this.id = this.route.snapshot.paramMap.get('id')!;
       this.rentalsService
         .detail(this.id)
-        .subscribe((rental: Rental) => this.initForm(rental));
+        .subscribe((rental: Rental) => this.initForm(false, rental));
     } else {
-      this.initForm();
+      this.initForm(true);
     }
   }
 
@@ -63,10 +63,10 @@ export class FormComponent implements OnInit {
     }
   }
 
-  private initForm(rental?: Rental): void {
+  private initForm(createRental: Boolean, rental?: Rental): void {
     console.log(rental);
     console.log(this.sessionService.user!.id);
-    if(rental?.owner_id !== this.sessionService.user!.id) {
+    if((rental?.owner_id !== this.sessionService.user!.id) && (!createRental)) {
       this.router.navigate(['/rentals']);
     }
     this.rentalForm = this.fb.group({

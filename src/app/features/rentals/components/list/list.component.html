@@ -31,6 +31,11 @@
                         <mat-icon>edit</mat-icon>
                         <span class="ml1">Edit</span>
                     </button>
+                    <button *ngIf="rental.owner_id === user?.id" mat-raised-button color="warn"
+                        (click)="onDelete(rental.id, rental.name)">
+                        <mat-icon>delete</mat-icon>
+                        <span class="ml1">Delete</span>
+                    </button>
                 </mat-card-actions>
             </mat-card>
         </div>

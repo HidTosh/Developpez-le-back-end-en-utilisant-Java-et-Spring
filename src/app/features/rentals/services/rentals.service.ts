@@ -30,4 +30,8 @@ export class RentalsService {
   public update(id: string, form: FormData): Observable<RentalResponse> {
     return this.httpClient.put<RentalResponse>(`${this.pathService}/${id}`, form);
   }
+
+  public delete(id: string): Observable<RentalResponse> {
+    return this.httpClient.delete<RentalResponse>(`${this.pathService}/${id}`);
+  }
 }
